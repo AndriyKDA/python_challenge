@@ -23,15 +23,14 @@ with open(path, 'r') as bankfile:
     
     #create a list to hold monthly profit/loss values
     monthly_value = []
+    #row_count = []
     
     
     for row in csv_reader:
         line_count +=1
         net_total_amount += int(row[1])
         monthly_value.append(int(row[1]))
-        #monthly_value2.append(row[1])
         
-
 print(f" Total Months: {line_count}")
 print(f" Net Total Amount: {net_total_amount}")
 #print(monthly_value)
@@ -44,19 +43,29 @@ def monthly_change(monthly_value):
     for i in range(len(monthly_value)):
     
         #set a condition to make sure indexes are within the range
-        if i >= 0 and i <= 84: #int(net_total_amount)-2:
+        if i >= 0 and i <= int(line_count)-2:
         
-            #fundtion argument
+            #function argument
             change = monthly_value[i+1] - monthly_value[i]
             monthly_var.append(change)
-            print(change)
+            #print(change)
     
 # call the function
 monthly_change(monthly_value)
 print(monthly_change)
 
+#caluclating average value
 average = sum(monthly_var)/len(monthly_var)
-print(f" the average change for the period is {average}")
+print(f"The average change for the period is {average}")
+
+#returning max value
+max_value = max(monthly_var)
+print(f"The maximum increase is {max_value}")
+
+#returning  min value
+min_value = min(monthly_var)
+print(f"The maximum decrease is {min_value}")
+
 
     
        
