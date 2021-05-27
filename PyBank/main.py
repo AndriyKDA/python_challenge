@@ -1,5 +1,5 @@
 
-#*********PyBank python exersise************
+#*********PyBank python exersize************
 import os
 import csv
 
@@ -11,7 +11,7 @@ with open(path, 'r') as bankfile:
 
     #pass file to csv reader and split the data on commas
     csv_reader = csv.reader(bankfile, delimiter=',')
-    print(csv_reader)
+    #print(csv_reader)
     
     #ommit the header row
     csv_header = next(csv_reader)
@@ -24,22 +24,34 @@ with open(path, 'r') as bankfile:
     
     #create a list to hold monthly profit/loss values
     monthly_value = []
+    
+    #create a list to hold dates
     date = []
     
+    #loop through csv file
     for row in csv_reader:
+        
+        #calcualte number of rows
         line_count +=1
+        
+        #calculate total net amount
         net_total_amount += int(row[1])
+        
+        #add monthly profits/losses to the new list
         monthly_value.append(int(row[1]))
+        
+        #add monthly dates to the new list
         date.append(row[0])
         
-print(f" Total Months: {line_count}")
-print(f" Net Total Amount: {net_total_amount}")
+#orint results        
+print(f"Total Months: {line_count}")
+print(f"Net Total Amount: ${net_total_amount}")
 
 
-
+#create a new list to hold monthly variance values
 monthly_var = []
-#monthly_var_date = []
-#write a function to loop through the list indexes and calulate the difference
+
+#write a function to loop through the list indexes and calulate the monthly difference
 def monthly_change(monthly_value, date):
     
     for i in range(len(monthly_value)):
@@ -49,58 +61,47 @@ def monthly_change(monthly_value, date):
         
             #function argument
             change = monthly_value[i+1] - monthly_value[i]
+            
+            #add formula values to the list
             monthly_var.append(change)
             #print(change)
-    
-           
-    #for x in range(len(date)):
-            
-        #set a condition to make sure indexes are within the range
-     #   if x >= 0 and x <= int(line_count)-2:
-            
-      #      date_change = date[x+1]
-        #    monthly_var_date.append(date_change)
-       #     print(date_change)
-            
         
 # call the function
 monthly_change(monthly_value, date)
 #print(monthly_change)
 
 
-#caluclating average value
-average = sum(monthly_var)/len(monthly_var)
-print(f"The average change for the period is {average}")
+#caluclating average variance value
+average = round(sum(monthly_var)/len(monthly_var),2)
+print(f"The average change for the period is ${average}")
 
-#returning max value
+#returning max variance value
 max_value = max(monthly_var)
-index_max = date[monthly_var.index(max_value)+1]
-print(f"The maximum increase: {index_max} {max_value}")
+
+#returning date for max variance value by refernecing the index of the value
+date_max = date[monthly_var.index(max_value)+1]
+print(f"The maximum increase was in: {date_max} ${max_value}")
 
 
 #returning  min value
 min_value = min(monthly_var)
-index_min = date[monthly_var.index(min_value)+1]
-print(f"The maximum decrease: {index_min} {min_value}")
+
+#returning date for min variance value by refernecing the index of the value
+date_min = date[monthly_var.index(min_value)+1]
+print(f"The maximum decrease was in: {date_min} ${min_value}")
 
 
-
-#define a pth for the output txt file
+#define a path for the output txt file
 path_txt = os.path.join('/Users/ak/Documents/DA/Python/python_challenge/PyBank/Analysis/Output.txt')
 
-#create list of data to write onto the txt file
-#output_text = ["Total Months: $" + str(line_count)+ "\n", 
- #              "Total Amount: $" + str(net_total_amount)+ "\n",
-  #             "Greatest Increase in Profits:  $"+ str(max_value)+ "\n", 
-   #            "Greatest Decrease in Profits:  $"+ str(min_value)]
-
 #open the output file, then write the data
-
-with open(path_txt, 'w', newline = '') as output:
+with open(path_txt, 'w') as output:
+    writer_txt = output.write("Financial Analysis" + "\n")
+    writer_txt = output.write("------------------" + "\n")
     writer_txt = output.write("Total Months: " + str(line_count)+ "\n")
     writer_txt = output.write("Total Amount: $" + str(net_total_amount)+ "\n")
-    writer_txt = output.write("Greatest Increase in Profits: "+ str(index_max)+" $"+str(max_value)+ "\n")
-    writer_txt = output.write("Greatest Decrease in Profits: "+ str(index_min)+" $"+str(min_value)+ "\n")
+    writer_txt = output.write("Greatest Increase in Profits was in: "+ str(date_max)+" $"+str(max_value)+ "\n")
+    writer_txt = output.write("Greatest Decrease in Profits was in: "+ str(date_min)+" $"+str(min_value)+ "\n")
         
     
        
