@@ -1,0 +1,4 @@
+Total Months: $86
+Total Amount: $38382578
+Greatest Increase in Profits: 12-Feb $1926159
+Greatest Decrease in Profits: 13-Sep $-2196167
