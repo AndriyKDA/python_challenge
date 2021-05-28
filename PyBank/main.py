@@ -43,7 +43,7 @@ with open(path, 'r') as bankfile:
         #add monthly dates to the new list
         date.append(row[0])
         
-#orint results        
+#print results        
 print(f"Total Months: {line_count}")
 print(f"Net Total Amount: ${net_total_amount}")
 
