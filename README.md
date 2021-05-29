@@ -1,5 +1,5 @@
 # python_challenge
-Submissing the python challenfe exersize. 
+Submitting the python challenge exersize. 
 Two codes were developed:
 - PyBank, which calculates
     The total number of months included in the dataset
