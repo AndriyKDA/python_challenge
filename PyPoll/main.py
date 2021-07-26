@@ -3,7 +3,7 @@ import os
 import csv
 
 #path to colect data from the csv file in the resource folder
-path =os.path.join('/Users/ak/Documents/DA/Python/python_challenge/PyPoll/Resources/election_data.csv')
+path =os.path.join('..//Resources/election_data.csv')
 
 #read in csv file
 with open(path, 'r') as pollfile:
@@ -90,7 +90,7 @@ winner = candidates[percent_votes.index(maxv)]
 print(f"\nThe winner of the rally is: {winner} with {maxv}% of votes" )
 
 #define a path for the output txt file to export the results
-path_txt = os.path.join('/Users/ak/Documents/DA/Python/python_challenge/PyPoll/Analysis/Output.txt')
+path_txt = os.path.join('..//Analysis/Output.txt')
 
 #open the output file, then write the data
 with open(path_txt, 'w') as output:
