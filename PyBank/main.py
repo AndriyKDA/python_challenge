@@ -4,7 +4,7 @@ import os
 import csv
 
 #path to colect data from the csv file in the resource folder
-path =os.path.join('/Users/ak/Documents/DA/Python/python_challenge/PyBank/Resources/budget_data.csv')
+path =os.path.join('..//Resources/budget_data.csv')
 
 #read in csv file
 with open(path, 'r') as bankfile:
@@ -92,7 +92,7 @@ print(f"The maximum decrease was in: {date_min} ${min_value}")
 
 
 #define a path for the output txt file
-path_txt = os.path.join('/Users/ak/Documents/DA/Python/python_challenge/PyBank/Analysis/Output.txt')
+path_txt = os.path.join('..//Analysis/Output.txt')
 
 #open the output file, then write the data
 with open(path_txt, 'w') as output:
